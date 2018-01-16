@@ -1,0 +1,109 @@
+body{
+    /*background: #fff !important;*/
+
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+
+    background: #442200; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #442200 0%, #43004c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #442200 0%,#43004c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #442200 0%,#43004c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    margin-top: 11%;
+    margin-bottom: 11%;
+}
+
+#login{
+    padding: 40px 20px;
+    border-radius: 30px;
+    width: 280px;
+    background: #d37400; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #d37400 0%, #6c00e0 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #d37400 0%,#6c00e0 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #d37400 0%,#6c00e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+form {
+    background: none;
+    padding: 0 20px;
+    border: none;
+    box-shadow: none !important;
+}
+
+form input,
+input[type="text"]
+{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fdbad7;
+    box-shadow: none;
+    color: #fdbad7;
+    width: 225px;
+    height: 40px;
+}
+
+form p,
+form label{
+    color: #fdbad7;
+}
+
+form #submit{
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 6px;
+    border: none;
+    box-shadow: none;
+    border-radius: 30px;
+    margin: 20px 0;
+    height: 40px;
+
+    background: #fff;
+    color: #280112;
+    text-shadow: none;
+    font-weight:bold;
+
+    /*transition: background-color 0.2s ease;*/
+
+    background: #eeeeee; /* Old browsers */
+    background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+form #submit:hover{
+    background: #63032d;
+    color: #fdbad7;
+    box-shadow: none;
+    border-bottom: none;
+}
+
+#user{
+    margin-top: 20%;
+    margin-bottom: 40px;
+    font-size: 22px;
+}
+
+#pass{
+    margin-bottom: 40px;
+    font-size: 22px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 20px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 20px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 20px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    font-size: 20px;
+  }
+
+  
