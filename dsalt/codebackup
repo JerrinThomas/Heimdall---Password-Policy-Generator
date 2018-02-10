@@ -1,0 +1,102 @@
+<select name="color1" required>
+        <option value="red" style="background:red">Red</option>
+        <option value="green" style="background:green">Green</option>
+        <option value="yellow" style="background:yellow">Yellow</option>
+        <option value="blue" style="background:blue">Blue</option>
+        <option value="orange" style="background:orange">Orange</option>
+        <option value="purple" style="background:purple">Purple</option>
+        <option value="cyan" style="background:cyan">Cyan</option>
+        <option value="magneta" style="background:magneta">Magneta</option>
+        <option value="lime" style="background:lime">Lime</option>
+        <option value="pink" style="background:pink">Pink</option>
+        <option value="teal" style="background:teal">Teal</option>
+        <option value="lavender" style="background:lavender">lavender</option>
+        <option value="brown" style="background:brown">Brown</option>
+        <option value="beige" style="background:beige">Beige</option>
+        <option value="maroon" style="background:maroon">Maroon</option>
+        <option value="mint" style="background:mint">Mint</option>
+        <option value="olive" style="background:olive">Olive</option>
+        <option value="coral" style="background:coral">Coral</option>
+        <option value="navy" style="background:navy">Blue</option>
+        <option value="grey" style="background:grey">Grey</option>
+        <option value="white" style="background:white">White</option>
+        <option value="black" style="background:black">Black</option>
+    </select><br>
+    Next most likeable Color:<br>
+    <select name="color2" required>
+        <option value="red" style="background:red">Red</option>
+        <option value="green" style="background:green">Green</option>
+        <option value="yellow" style="background:yellow">Yellow</option>
+        <option value="blue" style="background:blue">Blue</option>
+        <option value="orange" style="background:orange">Orange</option>
+        <option value="purple" style="background:purple">Purple</option>
+        <option value="cyan" style="background:cyan">Cyan</option>
+        <option value="magneta" style="background:magneta">Magneta</option>
+        <option value="lime" style="background:lime">Lime</option>
+        <option value="pink" style="background:pink">Pink</option>
+        <option value="teal" style="background:teal">Teal</option>
+        <option value="lavender" style="background:lavender">lavender</option>
+        <option value="brown" style="background:brown">Brown</option>
+        <option value="beige" style="background:beige">Beige</option>
+        <option value="maroon" style="background:maroon">Maroon</option>
+        <option value="mint" style="background:mint">Mint</option>
+        <option value="olive" style="background:olive">Olive</option>
+        <option value="coral" style="background:coral">Coral</option>
+        <option value="navy" style="background:navy">Blue</option>
+        <option value="grey" style="background:grey">Grey</option>
+        <option value="white" style="background:white">White</option>
+        <option value="black" style="background:black">Black</option>
+    </select><br>
+    
+    
+    
+    
+    
+    
+    
+    
+    <?php
+
+$dbHost = 'localhost';
+$dbUser = 'root';
+$dbPass = '123';
+$dbName = 'dsalt';
+$dbC = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName)
+        or die('Error Connecting to MySQL DataBase');
+for($i=1;$i<=20;$i++)
+{
+$salt1=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt2=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt3=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt4=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt5=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt6=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt7=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt8=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt9=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt10=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt11=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt12=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt13=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt14=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt15=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt16=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt17=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt18=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt19=openssl_random_pseudo_bytes(30, $cstrong);
+    $salt20=openssl_random_pseudo_bytes(30, $cstrong);
+ 
+    
+//echo $salt;
+
+$sql="INSERT INTO `seeds_warehouse`(`seq_no`,`books`, `songs`, `idioms`, `movies`, `tvshows`, `poems`, `games`, `footballers`, `animals`, `birds`, `insects`, `teams`, `authors`, `gods`, `superheroes`, `magical_objects`, `celestial_objects`, `got_characters`, `dinosaurs`, `plants`) VALUES('17','".$salt1."','".$salt2."','".$salt3."','".$salt4."','".$salt5."','".$salt6."','".$salt7."','".$salt8."','".$salt9."','".$salt10."','".$salt11."','".$salt12."','".$salt13."','".$salt14."','".$salt15."','".$salt16."','".$salt17."','".$salt18."','".$salt19."','".$salt20."')"; 
+
+  //  INSERT INTO seeds_warehouse(seq_no, books, songs, idioms, movies, tvshows, poems, games, footballers, animals, birds, insects, teams, authors, gods, superheroes, magical_objects, celestial_objects, got_characters, dinosaurs, plants, mal_songs, mal_movies)
+//INSERT INTO `dsalt`.`test` (`test`) VALUES ('5');
+//('".$salt1."','".$salt2."','".$salt3."','".$salt4."','".$salt5."','".$salt6."','".$salt7."','".$salt8."','".$salt9."','".$salt10."','".$salt11."','".$salt12."','".$salt13."','".$salt14."','".$salt15."','".$salt16."','".$salt17."','".$salt18."','".$salt19."','".$salt20."')"; 
+if(mysqli_query($dbC,$sql))
+    echo "success";
+else 
+    echo mysqli_error($dbC);
+}
+?>
