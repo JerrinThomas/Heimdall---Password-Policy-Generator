@@ -86,17 +86,19 @@
     }
     
     //echo "'$color2'";
-    $login_time=date('Ymdhi');
+    $login_time=date('Ymdhi',time());
     //echo "'$login_time'";
         
     $sql="INSERT INTO name_time_warehouse(`uname`,`email`,`logintime`) VALUES('$name','$email','$login_time')";
     mysqli_query($dbC,$sql);
 
-        
+    $sql="SELECT uid FROM name_time_warehouse WHERE uname='$name' AND email='$email'";
+    $result=mysqli_query($dbC,$sql);
+    $id=mysqli_fetch_row($result);
     
         
-    salt_coord($name,$pwd,$login_time,$color1,$color2);
-    function salt_coord($uname,$password,$login_time,$color1,$color2)
+    $hash=salt_coord($name,$pwd,$login_time,$color1,$color2);
+     function salt_coord($uname,$password,$login_time,$color1,$color2)
     {
         
         //DB connection    
@@ -120,52 +122,57 @@
         else
             $x_2=$x_1+$x_1+$x_3;
        
-        $x_4=$x_3*($x_1*$x_3);
+        $x_4=$x_3+($x_1*$x_3);
         if($x_4>20)
             $x_4=fmod($x_2,20);
         else if($x_4==20)
             $x_4=20;
         else
-            $x_4=$x_3*($x_1*$x_3);
+            $x_4=$x_3+($x_1*$x_3);
         
       
        
         $sql="SELECT category FROM seed_map WHERE row_id='$x_1+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
-        $sql="SELECT count('$cat[0]') FROM seeds_warehouse";
+        $sql="SELECT count($cat[0]) FROM seeds_warehouse";
         $result=mysqli_query($dbC,$sql);
         $len1=mysqli_fetch_row($result);
         
         $sql="SELECT category FROM seed_map WHERE row_id='$x_2+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
-        $sql="SELECT count('$cat[0]') FROM seeds_warehouse ";
+        $sql="SELECT count($cat[0]) FROM seeds_warehouse ";
         $result=mysqli_query($dbC,$sql);
         $len2=mysqli_fetch_row($result);
         
         $sql="SELECT category FROM seed_map WHERE row_id='$x_3+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
-        $sql="SELECT count('$cat[0]') FROM seeds_warehouse";
+        $sql="SELECT count($cat[0]) FROM seeds_warehouse";
         $result=mysqli_query($dbC,$sql);
         $len3=mysqli_fetch_row($result);
-        
+   
         $sql="SELECT category FROM seed_map WHERE row_id='$x_4+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
-        $sql="SELECT count('$cat[0]') FROM seeds_warehouse";
+        $sql="SELECT count($cat[0]) FROM seeds_warehouse";
         $result=mysqli_query($dbC,$sql);
         $len4=mysqli_fetch_row($result);
         
         $y_1=max($len1[0],$len2[0],$len3[0],$len4[0]);
         
-        $time_sum=0;
-        for($x=0;$x<=12;$x++)
-            $time_sum=$time_sum+intval(substr($login_time,$x,1));
+        echo $login_time,strlen($login_time);
         
-        $y=$y_1*($time_sum)+rand(0,19);
+        $time_sum=array_sum(str_split($login_time));;
+        //for($x=0;$x<12;$x++)
+           // $time_sum+=substr($login_time,$x,1);
         
+        echo "<br>";
+        echo $time_sum;
+        
+        $y=$y_1*($time_sum);
+              echo "<br>";
       
         if($y_1>$len1[0])
             $y_1_1=fmod($y_1,$len1[0]);
@@ -181,11 +188,13 @@
             $y_1_2=$len2[0];
         else
             $y_1_2=$y_1;
-        $y_2_3=fmod($y,$len3[0]);
-        echo "$y_2_3";
+        
+         
+         $y_2_3=fmod($y,$len3[0]);
+      //  echo "$y_2_3";
         $y_2_4=fmod($y,$len4[0]);
         echo "<br>";
-        echo "$y_2_4";
+       // echo "$y_2_4";
 
         $sql="SELECT category FROM seed_map WHERE row_id='$x_1+1'";
         $result=mysqli_query($dbC,$sql);
@@ -193,7 +202,7 @@
         $sql="SELECT $cat[0] FROM seeds_warehouse WHERE seq_no='$y_1_1'";
         $result=mysqli_query($dbC,$sql);
         $seed1=mysqli_fetch_row($result);
-
+    
         $sql="SELECT category FROM seed_map WHERE row_id='$x_2+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
@@ -201,14 +210,13 @@
         $result=mysqli_query($dbC,$sql);
         $seed2=mysqli_fetch_row($result);
         
-        
         $sql="SELECT category FROM seed_map WHERE row_id='$x_3+1'";
         $result=mysqli_query($dbC,$sql);
         $cat=mysqli_fetch_row($result);
         $sql="SELECT $cat[0] FROM seeds_warehouse WHERE seq_no='$y_2_3'";
         $result=mysqli_query($dbC,$sql);
         $seed3=mysqli_fetch_row($result);
-        
+      
         
         $sql="SELECT category FROM seed_map WHERE row_id='$x_4+1'";
         $result=mysqli_query($dbC,$sql);
@@ -216,12 +224,16 @@
         $sql="SELECT $cat[0] FROM seeds_warehouse WHERE seq_no='$y_2_4'";
         $result=mysqli_query($dbC,$sql);
         $seed4=mysqli_fetch_row($result);
-
+    
         echo "<br>";
-        $new="$seed1[0].$seed3[0].$password.$seed2[0].$seed4[0]";
-        
-        echo $new;
+        $new="$seed1[0].$seed3[0].$seed2[0].$seed4[0]";
+        $pass=hash_pbkdf2("sha256", $password, $new, 1000);
+        echo $pass ;
+        return $pass;
     }
+
+    $sql="INSERT INTO hash_warehouse(`uid`,`hashval`) VALUES('$id[0]','$hash')";
+    mysqli_query($dbC,$sql);
 
 
 ?>
