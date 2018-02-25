@@ -1,6 +1,6 @@
 const db = require('./database.js');
 const rn = require('random-number');
-
+const promise = require('promise');
 var updateFreqTable = (passwd) => {// function takes passwd as parametr and update the freqTab
   if(passwd.includes(' ')){
       var query = `UPDATE freqtab SET freq = freq+1 where symbol = ' ';`;
@@ -172,9 +172,12 @@ var findAlpha = () => {
              break;
          }
 };
-var includesym;
-var exploration = function(){
-  var sync = true;
+var includesym = {
+  e1 : '',
+  e2 : ''
+};
+var exploration = function(callback){
+  //var sync = true;
   db.con.query(`select * from freqtab where freq=(select min(freq) from freqtab);`,(error,result,field) => {
     if(error) throw error;
     //In case no errror =>
@@ -185,13 +188,13 @@ var exploration = function(){
         result.forEach( (e) => {
              possible.push(e.symbol);
              });
-      includesym = {e1 : possible[rand(0,possible.length)],e2 : possible[rand(0,possible.length)]}
+      includesym = {e1 : possible[rand(0,possible.length-1)],e2 : possible[rand(0,possible.length-1)]}
     }
     findAlpha();
-    sync = false ;
+    callback(includechar,avoidchar,includesym);
+  //  sync = false ;
   });
-   while(sync) {require('deasync').sleep(100);}
-   return [includechar,avoidchar,includesym];
+//   while(sync) {require('deasync').sleep(100);}
 };
 
 module.exports = {
