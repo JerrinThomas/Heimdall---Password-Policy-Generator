@@ -1,5 +1,7 @@
 const hs = require('./helpServer.js');
 const db = require('./database.js');
+const processPass = require('./processPass');
+
 const express = require('express');
 const ejs = require('ejs');
 const hg = require('./hashgen.js');
@@ -16,13 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static(__dirname + '/views/public'));
 
-var char = hs.exploration((includechar,avoidchar,includesym)=> {
-  console.log(includechar);
-  console.log(includesym);
-  console.log(avoidchar);
 
+app.get('/signup',function(req,res) {
+  hs.exploration().then((val)=> {
+    res.render('dbsignup',{
+      insym : val[0],
+      inchar : val[1],
+      avchar : val[2],
+      innum : val[3]
+    });
+  });
 });
-
 app.post('/postlogin', function(req, res) {
   var uname = req.body.uname;
   var password = req.body.pwd;
@@ -47,7 +53,8 @@ app.post('/postsignup', function(req, res) {
    var login_time = date.format(now, 'YYYYMMDDHHmm');
    hg.salt_hash_gen(password,login_time,color1,color2)
     .then( (key) => {
-   hg.updatedb(uname,email,login_time,key);
+      hg.updatedb(uname,email,login_time,key);
+      processPass.processAndUpdateTable(password).then(() => {} );
       console.log(key);
       res.redirect('/dblogin.html');
 
