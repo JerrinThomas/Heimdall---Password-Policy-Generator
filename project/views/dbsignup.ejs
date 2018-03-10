@@ -5,6 +5,7 @@
 <body>
 <form action="/postsignup" method="post">
     User Name:<input type="text" name="uname" required><br>
+    <input type="hidden" name="pid" value="<%=pid%>">
     Email :<input type="email" name="email" required><br>
     <span>Include Characters : '<%=inchar.e1%>' , '<%=inchar.e2%>'</span><br>
     <span>Include Symbols : '<%=insym.e1%>' , '<%=insym.e2%>'</span><br>

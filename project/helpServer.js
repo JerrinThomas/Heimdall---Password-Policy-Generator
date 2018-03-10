@@ -55,12 +55,21 @@ var avoidChar = function(){
 var exploration = function(){
     return new Promise( function(resolve, reject){
     includeSymbols()
-    .then((includesym) => {
+    .then((insym) => {
          includeChars()
-         .then((includechar) => {
+         .then((inchar) => {
             avoidChar()
-            .then((avoidchar) =>{
-              includeNums().then(() => resolve([includesym,includechar,avoidchar,includenum]) );
+            .then((avchar) =>{
+              includeNums()
+              .then((innum) => {
+                db.con.query("insert into policytab(inchar1,inchar2,insym1,insym2,innum1,innum2,avchar1,avchar2) values('"+inchar.e1+"','"+inchar.e2+"','"+insym.e1+"','"+insym.e2+"','"+innum.e1+"','"+innum.e2+"','"+avchar.e1+"','"+avchar.e2+"');",(error) => {
+                  if(error) throw error;
+                  db.con.query("select id from policytab order by id desc;",(error,res) => {
+                    if(error) throw error;
+                    resolve([includesym,includechar,avoidchar,includenum,res[0].id]);            
+                  });      
+                });  
+              });
         });  
     });
  });

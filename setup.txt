@@ -1,0 +1,15 @@
+1. create db heimdall and import heimdall.sql
+2. create db dsalt and import dsalt.sql
+
+Changing DB User Name and Password ....
+ 1. change in hashgen.js
+ 2. database.js
+
+Install dependencies...
+3. npm install  
+
+Start Server..
+4 npm start
+
+Stop Server...
+5 ctrl+c
