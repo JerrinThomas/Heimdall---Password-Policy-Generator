@@ -2,15 +2,16 @@
 
 <head>
     <title>Dynamic Salt Test Login</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
     <form action="/postlogin" method="post">
         User Name:
-        <input type="text" name="uname" required>
+        <input type="text" name="uname" id="unam" required>
         <br> Password:
 
-        <input type="password" name="pwd" required>
+        <input type="password" name="pwd" id="pswd" required>
         <br> Most likeable Color:
         <br>
         <select name="color1" required>
@@ -39,7 +40,7 @@
         </select>
         <br> Next most likeable Color:
         <br>
-        <select name="color2" required>
+        <select name="color2" id="clr" required>
             <option value="1" style="background:red">Red</option>
             <option value="2" style="background:green">Green</option>
             <option value="3" style="background:yellow">Yellow</option>
