@@ -5,59 +5,40 @@
 </head>
 <body>
     
-<form action="/postsignup" method="post" id = "myForm">
+    
     <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
-			<div class="sign-in-htm">
+             <form action="/postsignup" method="post">
                 <div class="group">
 					<label for="user" class="label">Username</label>
-                    
-                   
-					<input id="user" type="text" name="uname" class="input" required onchange="check_uname()">
+                    <input id="user" type="text" name="uname" class="input" required onchange="check_uname_email()"> 
                     <input type="hidden" name="pid" value="<%=pid%>">
-                    <span id = "error_uname" class="policy" style="color:#15f713;"></span><br>
-                    
-				</div>
-
+                </div>
                 <div class="group">
 					<label for="user" class="label">Email</label>
-                    
-                    
-					<input id="email" type="email" name="email" class="input" required onchange="check_email()">
-                    <span id = "error_email" class="policy" style="color:#15f713;"></span><br>
-                    
-				</div>
-                
+					<input id="email" type="email" name="email" class="input" required onchange="check_uname_email()">
+				</div>             
                 <div class="group">
 					<label for="user" class="label">Policy</label>
-                    
-                    <span class="policy">Include Characters : '<%=inchar.e1%>' , '<%=inchar.e2%>'</span><br>
-                    <span class="policy">Include Symbols : '<%=insym.e1%>' , '<%=insym.e2%>'</span><br>
-                    <span class="policy">Include Numbers : '<%=innum.e1%>' , '<%=innum.e2%>'</span><br>
-                    <span class="policy">Avoid Characters  : '<%=avchar.e1%>' , '<%=avchar.e2%>'</span><br>
-        
-                    
+                    <span>Include Characters : '<%=inchar.e1%>' , '<%=inchar.e2%>'</span><br>
+                    <span>Include Symbols : '<%=insym.e1%>' , '<%=insym.e2%>'</span><br>
+                    <span>Include Numbers : '<%=innum.e1%>' , '<%=innum.e2%>'</span><br>
+                    <span>Avoid Characters  : '<%=avchar.e1%>' , '<%=avchar.e2%>'</span><br>        
 				</div>
         
         <div class="group">
 					<label for="pass" class="label">Password</label>
-                    
-                    
-					<input id="pass" type="password" name="pwd" class="input" data-type="password" onkeyup = "check()" required><br>
-                        <span id = "comment1" class="policy"></span><br>
-            
-                    
+					<input id="pass" type="password" name="pwd" class="input" data-type="password" onkeyup = "check()" id = "psswd" required>
+                        <span id = "comment1"></span><br>
 				</div>
         
           <div class="group">
-                    
-                    
-                        <label for="pass" class="label">Most Favourite Color: </label>
+                    <label for="pass" class="label">Most Favourite Color: </label>
 					<select name="color1" required>
-                        <!--option selected> Select Color1 </option-->
+                        <option selected> Select Color1 </option>
                         <option value="1" style="background:red">Red</option>
                         <option value="2" style="background:green">Green</option>
                         <option value="3" style="background:yellow">Yellow</option>
@@ -81,16 +62,11 @@
                         <option value="19" style="background:white">White</option>
                         <option value="20" style="background:black">Black</option>
                     </select>
-                    
-                    
 				</div>
-                
                 <div class="group">
-                    
-                    
-                        <label for="pass" class="label">Next Most Favourite Color: </label>
+                    <label for="pass" class="label">Next Most Favourite Color: </label>
 					<select name="color2" required>
-                        <!--option selected> Select Color2 </option---->
+                        <option selected> Select Color2 </option>
                         <option value="1" style="background:red">Red</option>
                         <option value="2" style="background:green">Green</option>
                         <option value="3" style="background:yellow">Yellow</option>
@@ -114,25 +90,22 @@
                         <option value="19" style="background:white">White</option>
                         <option value="20" style="background:black">Black</option>
                     </select>
-                    
-                    
 				</div>
         
         
                 <div class="group">
-                    
-                    
-					<input type="button" class="button" value="Sign Up" onclick="mySubmit()" id = "sumbitForm">
-                    
-                    
-				</div>
-                
-</form>
+					<input type="submit" class="button" value="Sign Up">
+                </div>
+                </form>
+            </div>
+        </div>
+     </div>
+    </div>
     <script>
             function check(){
                 var enter1 = false;
                 var text = "Include ";
-                var pwd = document.getElementById("pass").value;
+                var pwd = document.getElementById("pwd").value;
                 if(!pwd.includes('<%=inchar.e1%>'))
                  { 
                      enter1 = true; 
@@ -183,38 +156,20 @@
                 else
                 document.getElementById("comment1").innerHTML = ""; 
             }
-            function check_uname() {
+            function check_uname_email() {
                var xhttp = new XMLHttpRequest();
-               var uname = document.getElementById("user").value;
-               var opt = 1;
-               xhttp.onreadystatechange = function() {
-               if (this.readyState == 4 && this.status == 200) {
-                   document.getElementById("error_uname").innerHTML= this.responseText;
-                }
-              };
-              xhttp.open("GET", "check?uname="+uname+"&opt="+opt, true);
-              xhttp.send();
-            }
-            function check_email() {
-               var xhttp = new XMLHttpRequest();
+               var uname = document.getElementById("uname").value;
                var email = document.getElementById("email").value;
-               var opt = 2;
                xhttp.onreadystatechange = function() {
                if (this.readyState == 4 && this.status == 200) {
-                   document.getElementById("error_email").innerHTML= this.responseText;
+                   var res = this.responseText;
+                   if(res != '')
+                      alert(res);
                 }
               };
-              xhttp.open("GET", "check?email="+email+"&opt="+opt, true);
+              xhttp.open("GET", "check?uname="+uname+"&email="+email, true);
               xhttp.send();
-            }
-            function mySubmit(){
-                if( document.getElementById("error_email").innerHTML == '' && document.getElementById("error_uname").innerHTML =='' && document.getElementById("user").innerHTML != '' && document.getElementById("email").innerHTML != '' && document.getElementById("pass").innerHTML != '')
-                     document.getElementById("myForm").submit();
-                else
-                   alert('Enter Valid Data')
-                 //console.log(document.getElementById("error_email").innerHTML,document.getElementById("error_uname").innerHTML)
             }
         </script>
 </body>
 </html>
-      

@@ -226,3 +226,7 @@ select {
     appearance:none;
     cursor:pointer;
 }
+
+.policy{
+    color: white;
+}
