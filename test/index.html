@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heimdall</title>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="row">
+
+        <div class="col s12 l6 l_box">
+            <div class="chip mg">
+                Please do both the signup's
+                
+            </div>
+            <div class=" valign-wrapper ">
+                <a class="waves-effect waves-light btn  modal-trigger c bg_org" href="#modal1">SignUp</a>
+            </div>
+            <div class="modal" id="modal1">
+                <div class="modal-content">
+                    <form>
+                        <div class="input-field col s12">
+                            <input id="name" type="text" class="validate">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+            <div class="chip mg1">
+                Scroll down
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+        <div class="col s12 l6 bg_purple l_box ">
+            <a href="#" id="logo-container" class="brand-logo pd">
+                <img src="white.png" style="width: 220px; margin-top: 20%;">
+            </a>
+            <div class="valign-wrapper">
+                <a class="waves-effect waves-light btn c bg_red modal-trigger" href="#modal2">Heimdall SignUp</a>
+            </div>
+            <div class="modal" id="modal2">
+                <div class="modal-content">
+                    <form>
+                        <div class="input-field col s12">
+                            <input id="name" type="text" class="validate">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="col s12 ">
+                            <span>include A</span><br>
+                            <span>include b</span><br>
+                            <span>include 1</span><br>
+                            <span>include 8</span>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>
