@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heimdall</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header class="page-topbar" id="header">
+        <div class="navbar-fixed">
+            <nav class="navbar-color gradient-45deg-purple-deep-orange gradient-shadow">
+                <div class="nav-wrapper">
+                    <div class="header-search-wrapper hide-on-med-and-down sideNav-lock">
+                        <i class="material-icons">search</i>
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+                    </div>
+                    <ul class="right hide-on-med-and-down" style="margin-right: 60px;">
+                        <li>
+                            <a href="#" class="waves-effect waves-block waves-light profile-button" onclick="drop();">
+                                <span class="avatar-status avatar-online">
+                                    <img src="imgs/index.png" alt="avatar">
+
+                                </span>
+                            </a>
+                            <ul id="profile-dropdown" class="dropdown-content" style="white-space: nowrap; opacity: 1; left: 1156.6px; position: absolute; top: 64px; display: none;">
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">face</i> Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">settings</i> Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">live_help</i> Help</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">lock_outline</i> Lock</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">keyboard_tab</i> Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="slide-out" class="side-nav fixed">
+            <li class="logo clr" style="height:280px; margin-bottom: 10px;">
+                <a href="#" id="logo-container" class="brand-logo">
+                    <img src="imgs/white.png" style="width: 220px; margin-top: 30px;">
+                </a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr slct" id="s1" onclick="chng(1);">
+                    <i class="material-icons lg lg_white" id="l1">web</i>Sites</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s2" onclick="chng(2);">
+                    <i class="material-icons lg" id="l2">note</i>Secure Notes</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s3" onclick="chng(3);">
+                    <i class="material-icons lg" id="l3">chrome_reader_mode</i>Form Fills</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s4" onclick="chng(4);">
+                    <i class="material-icons lg" id="l4">history</i>History</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse">
+            <i class="material-icons editz">menu</i>
+        </a>
+    </header>
+    <div class="row">
+        <div class="col l3"></div>
+
+        <div class="col s10 l9">
+            <div class="col s12 l3 marg">
+                <div class="card m_size">
+                    <div class="card-content">
+                        <h4 class="ele">Facebook</h4>
+                    </div>
+                    <div class="card-content clr1 wht">
+                        <h6 class="fnt">username:shayi</h6>
+                        <h6 class="fnt">password:123456</h6>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" style="color: #ab378f;">Visit</a>
+                        <a href="#modal1" style="float: right;margin-right: 0px;color: #fc6c43;" class="modal-trigger">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="#" style="float: right;margin-right: 20px;color: red;">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </div>
+                    <div class="modal m_edit" id="modal1">
+                        <div class="modal-content">
+                            <form>
+                                <div class="input-field">
+                                    <input id="name" type="text" class="validate">
+                                    <label for="name">UserName</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="password" type="password" class="validate" onblur="count();">
+                                    <label for="password" id="pd_1">Password</label>
+                                </div>
+
+                                <button class="btn waves-effect waves-light ml" type="submit" name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="fixed-action-btn">
+                <a href="#modal2" class="btn-floating btn-large waves-effect waves-light modal-trigger dblu">
+                    <i class="large material-icons">add</i>
+                </a>
+                <!--<ul>
+                  <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                  <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                  <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                  <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                </ul>-->
+            </div>
+            <div class="modal m_edit" id="modal2">
+                <div class="modal-content">
+                    <form>
+                        <div class="input-field">
+                            <input id="url" type="text" class="validate">
+                            <label for="url">SiteUrl</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="name" type="text" class="validate">
+                            <label for="name">UserName</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="password" type="password" class="validate" onblur="count();">
+                            <label for="password" id="pd_1">Password</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light ml" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

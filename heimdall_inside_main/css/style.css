@@ -1,0 +1,242 @@
+.gradient-45deg-purple-deep-orange.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(255, 110, 64, 0.5);
+}
+
+.gradient-45deg-purple-deep-orange {
+  background: #8e24aa;
+  background: -webkit-linear-gradient(45deg, #8e24aa 0%, #ff6e40 100%);
+  background: linear-gradient(45deg, #8e24aa 0%, #ff6e40 100%);
+}
+
+/*Search*/
+
+#header .header-search-wrapper {
+  margin: 10px auto 0 260px;
+  width: calc(100% - 600px);
+  height: 40px;
+  display: inline-block;
+  position: relative;
+  -webkit-transition: .3s ease all;
+  -o-transition: .3s ease all;
+  -moz-transition: .3s ease all;
+  transition: .3s ease all;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#header .header-search-wrapper.sideNav-lock {
+  margin: 10px auto 0 350px;
+}
+
+#header .header-search-wrapper i {
+  position: absolute;
+  font-size: 24px;
+  top: 6px;
+  left: 24px;
+  line-height: 32px !important;
+  -webkit-transition: color 200ms ease;
+  transition: color 200ms ease;
+}
+
+#header input.header-search-input {
+  display: block;
+  padding: 8px 8px 8px 72px;
+  width: 87%;
+  background: rgba(255, 255, 255, 0.3);
+  height: 24px;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  border: none;
+  font-size: 16px;
+  appearance: textfield;
+  font-weight: 400;
+  outline: none;
+  border-radius: 3px;
+}
+
+#header input.header-search-input:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#header input.header-search-input:focus {
+  color: #333;
+  background: #fff;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+#header .header-search-wrapper-focus i {
+  color: #444;
+}
+
+#header .header-search-input::-webkit-input-placeholder {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input::-moz-placeholder {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input:-ms-input-placeholder {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input:focus::-webkit-input-placeholder {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input:focus::-moz-placeholder {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input:focus::placeholder {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input:focus:-ms-input-placeholder {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#header .header-search-input::placeholder {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.search-out {
+  display: none;
+}
+
+.search-out input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #fff !important;
+  box-shadow: none;
+}
+
+.search-out-text {
+  border-bottom: 1px solid #fff !important;
+}
+
+/*avatar*/
+
+.avatar-status {
+  position: relative;
+  display: inline-block;
+  line-height: 50px;
+  width: 28px;
+  white-space: nowrap;
+  border-radius: 1000px;
+  vertical-align: bottom;
+}
+
+.avatar-status img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: #e6e6e6;
+  border: 0 none;
+  border-radius: 1000px;
+}
+
+.clr {
+  background: #8e24aa;
+}
+
+.wht {
+  color: white;
+}
+
+.dblu {
+  background-color: #8e24aa !important;
+}
+
+.pd {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.a_clr {
+  font-size: 20px;
+}
+
+.slct {
+  color: white !important;
+  background-color: #8e24aa;
+  border-radius: 5px;
+}
+
+.slct:hover {
+  color: #8e24aa !important;
+  border-radius: 5px;
+}
+
+.lg {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.lg_white {
+  color: white !important;
+}
+
+.ele {
+  color: #8e24aa;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.clr1 {
+  background: -webkit-linear-gradient(45deg, #8e24aa 0%, #ff6e40 100%);
+  background: linear-gradient(45deg, #8e24aa 0%, #ff6e40 100%);
+}
+
+.fnt {
+  font-size: 18px;
+}
+
+.m_edit{
+  width: 30% !important;
+}
+
+.ml{
+  margin-left: 25%;
+}
+
+@media only screen and (max-width: 768px) {
+  .editz {
+    position: fixed;
+    color: white;
+    top: 2.5%;
+    z-index: 1000;
+    left: 2.5%;
+  }
+  .fnt {
+    font-size: 16px;
+  }
+  .m_size {
+    margin-top: 2rem !important;
+  }
+  .marg{
+    margin-left: 4% !important;
+  }
+  .m_edit{
+    width: 80% !important;
+  }
+  .ml{
+    margin-left: 20%;
+  }
+}
