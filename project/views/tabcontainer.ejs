@@ -1,0 +1,96 @@
+             <% if((row === undefined) == false) { %>
+             <% for(var i=0,j=1;i<row.length;i++,j++) { %>
+               <div class="col s12 l3 marg" id="tab<%= j%>">
+                <div class="card m_size">
+                    <div class="card-content">
+                        <h4 class="ele"><%= row[i].sitename%></h4>
+                    </div>
+                    <div class="card-content clr1 wht" id="edit<%= j%>">
+                        <h6 class="fnt">username:<%= row[i].username%></h6>
+                        <h6 class="fnt">password: *******</h6>
+                    </div>
+                    <div class="card-action">
+                        <button style="color: #ab378f; border:none; background: white;" onclick="visittab('tab<%= j%>','<%= row[i].aid%>')">Visit</button>
+                        <button onclick="edittab('edit<%= j%>','<%= row[i].aid%>')"  style="float: right;margin-right: 0px;color: #fc6c43;  border:none; background: white;" class="modal-trigger">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button onclick="deletetab('tab<%= j%>','<%= row[i].aid%>')" style="float: right;margin-right: 20px;color: red;  border:none; background: white;">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                 </div>
+                </div>
+                <% } %>
+             <% } %>   
+            <div class="modal m_edit" id="modal1">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="e_name" type="text" class="validate">
+                            <label for="name">UserName</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="e_pass" type="password" class="validate">
+                            <label for="password" id="pd_1">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="mas_pass" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light ml" id="edit_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+            <div class="fixed-action-btn">
+                <a href="#modal2" class="btn-floating btn-large waves-effect waves-light modal-trigger dblu" id = "modal2fire">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+            <div class="modal m_edit" id="modal2">
+                <div class="modal-content">
+                        <input id="aid" type="hidden">
+                        <div class="input-field">
+                            <input id="sitename" type="text" class="validate">
+                            <label for="url">Site Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="furl" type="text" class="validate">
+                            <label for="url">SiteUrl</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="fname" type="text" class="validate">
+                            <label for="name">UserName / Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="fpassword" type="password" class="validate">
+                            <label for="password" id="pd_1">Password</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light ml" id="submit_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+            <div class="modal m_edit" id="passPrompt">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="passPro" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" id="go_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+            <div class="modal m_edit" id="passPrompt2">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="passPro2" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" id="go_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>

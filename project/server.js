@@ -20,7 +20,7 @@ app.use(session({
                  secret: "Shh, its a secret!",
                  resave: true,
                  saveUninitialized: true,
-                 cookie: { maxAge : 180000 }
+                 cookie: { maxAge : 900000 }
 }));
 app.use(express.static(__dirname + '/views/public'));
 app.use(function(req, res, next) {
@@ -174,6 +174,25 @@ app.get('/index',auth,function(req,res){
     });   
   });
 });
+app.post('/tabcontainer',function(req,res){
+  console.log("TabConEntered")
+  if(req.session.uid === undefined)
+       res.status(404).send('Not found');
+  else
+  db.con.query("select * from accnt where uid = "+req.session.uid+"",(e,u,f)=>{
+    res.render('tabcontainer',{
+      row : u
+    });   
+  });
+});
+app.post('/tabvisit',function(req,res){
+  console.log("TabVisitEntered")
+  var aid = req.body.aid;
+  db.con.query("select * from accnt where aid = "+aid+"",(e,u,f)=>{
+    var v = JSON.stringify(u[0]);
+    res.send(v);   
+  });
+});
 app.get('/logout',function(req,res){
   req.session.destroy(function(err) {
   });
@@ -188,7 +207,7 @@ app.post("/deleteaccnt",function(req,res){
     if(e) throw e;
   });
 });
-app.post("/editaccnt",function(req,res){
+app.post("/editaccnt",auth,function(req,res){
   var uname = req.body.username;
   var pass = req.body.password;
   var aid = req.body.aid;
@@ -207,6 +226,9 @@ app.post('/postaccnt',function(req,res){
   var furl = req.body.furl;
   var fpassword = req.body.fpassword;
   console.log(sitename,req.session.uid,fname,furl,fpassword);
+  if(req.session.uid === undefined)
+       res.status(404).send('Not found');
+  else
   db.con.query("insert into accnt(uid,sitename,siteurl,username,password) values("+req.session.uid+",'"+sitename+"','"+furl+"','"+fname+"','"+fpassword+"')",function(err,result,f){
      if(err) throw err;
      db.con.query("select aid from accnt where uid = "+req.session.uid+" and sitename = '"+sitename+"'",(error,id)=>{ 

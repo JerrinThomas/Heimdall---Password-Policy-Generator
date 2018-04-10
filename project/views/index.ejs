@@ -72,7 +72,7 @@
                 </a>
             </li>
             <li class="pd">
-                <a href="#!" class="a_clr slct" id="s1" onclick="chng(1);">
+                <a href="#!" class="a_clr slct" id="s1" onclick="loadtabcontainer();">
                     <i class="material-icons lg lg_white" id="l1">web</i>Sites</a>
             </li>
             <li class="pd">
@@ -181,6 +181,17 @@
                         </button>
                 </div>
             </div>
+            <div class="modal m_edit" id="passPrompt2">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="passPro2" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" id="go_but2">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
 
 
 
@@ -199,18 +210,20 @@
                                     var aes = new pidCrypt.AES.CBC();
                                     var ptext = $("#fpassword").val(); 
                                     var key = $("#passPro").val();
+                                    var sname = $("#sitename").val();
+                                    var uname = $("#fname").val();
                                     var ciphertext = aes.encryptText(ptext, key, {nBits: 128}); 
                                     $.post( "postaccnt",{
-                                        sitename : $("#sitename").val(),
+                                        sitename : sname,
                                         furl : $("#furl").val(),
-                                        fname : $("#fname").val(),
+                                        fname : uname,
                                         fpassword : ciphertext
                                     }, 
                                     function( data ) {
                                         $("#passPrompt").modal('close');
-                                        var num = $('div.col s12 l3 marg').length;
+                                        var num = document.getElementsByClassName("col s12 l3 marg").length;
                                         num++;
-                                        $("#tabContainer").append('<div id="tab'+ num +'" class="col s12 l3 marg"><div class="card m_size"><div class="card-content"><h4 class="ele">Facebook</h4></div><div class="card-content clr1 wht"><h6 class="fnt">username:shayi</h6><h6 class="fnt">password:123456</h6></div><div class="card-action"><a href="#" style="color: #ab378f;">Visit</a><a href="#modal1" style="float: right;margin-right: 0px;color: #fc6c43;" class="modal-trigger"><i class="material-icons">edit</i></a><a href="#" style="float: right;margin-right: 20px;color: red;"><i class="material-icons">delete</i></a></div></div></div>');
+                                        $("#tabContainer").append('<div class="col s12 l3 marg" id="tab'+num+'"><div class="card m_size"><div class="card-content"><h4 class="ele">'+sname+'</h4></div><div class="card-content clr1 wht" id="edit'+num+'"><h6 class="fnt">username:'+uname+'</h6><h6 class="fnt">password: *******</h6></div><div class="card-action"><button style="color: #ab378f; border:none; background: white;" onclick="visittab(\'tab'+num+'\',\''+data+'\')">Visit</button><button onclick="edittab(\'edit'+num+'\',\''+data+'\')"  style="float: right;margin-right: 0px;color: #fc6c43;  border:none; background: white;" class="modal-trigger"><i class="material-icons">edit</i></button><button onclick="deletetab(\'tab'+num+'\',\''+data+'\')" style="float: right;margin-right: 20px;color: red;  border:none; background: white;"><i class="material-icons">delete</i></button></div></div></div>');
                                     });
                                 }); 
                                 $("#submit_but").click(function(){
@@ -231,7 +244,22 @@
                                 });
                     });
                     function visittab(tab,aid){
-                        console.log("fired Visit");
+                        $("#passPrompt2").modal('open');
+                        $("#go_but2").click(function(){
+                                    var aes = new pidCrypt.AES.CBC();
+                                    var key = $("#passPro2").val();
+                                    //var ciphertext = aes.encryptText(ptext, key, {nBits: 128}); 
+                                    $.post( "tabvisit",{
+                                        aid : aid
+                                    }, 
+                                    function( data ) {
+                                        $("#passPrompt2").modal('close');
+                                        var pdata = JSON.parse(data);
+                                        console.log(pdata);
+                                        var plaintext = aes.decryptText(pdata.password, key, {nBits: 128});
+                                        $("#tabContainer").empty().append(data+'<br>'+plaintext);
+                                    });
+                                }); 
                     }
                     function edittab(tab,aid){
                          $("#e_name").val("");
@@ -266,7 +294,16 @@
                               
                             });
                     }
-                   
+                    function loadtabcontainer(){
+                            chng(1);
+                            $.post( "tabcontainer",{
+                                aid : "s"
+                            }, 
+                            function( data ) {
+                                $("#tabContainer").empty().append(data);
+                                //$("#tabContainer").append(data);
+                            });
+                    }
     </script>
 
 </body>
