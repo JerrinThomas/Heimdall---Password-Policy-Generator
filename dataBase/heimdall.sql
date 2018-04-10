@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2018 at 04:33 PM
+-- Generation Time: Apr 10, 2018 at 03:55 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -17,8 +17,188 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dsalt`
+-- Database: `heimdall`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accnt`
+--
+
+CREATE TABLE `accnt` (
+  `aid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `sitename` varchar(200) NOT NULL,
+  `siteurl` varchar(200) NOT NULL,
+  `username` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accnt`
+--
+
+INSERT INTO `accnt` (`aid`, `uid`, `sitename`, `siteurl`, `username`, `password`) VALUES
+(3, 1, 'Facebook', 'www.facebook.com', 'azin.makaranth@facebook.com', 'U2FsdGVkX19267iMJdDV5UmhoNR4YPdIlRiurbkdMKM='),
+(4, 1, 'GitHub', 'www.github.com', 'azin.makaranth@facebook.com', 'U2FsdGVkX1+OI4p+whlCMsFJTSQq/npfF5GjAc1XgKQ='),
+(5, 1, 'testvalue', 'hjhasfkasj', 'alpha', 'U2FsdGVkX18ywHjn6SSJEMRdrdnZX/Lx+31HLDjcYJo='),
+(6, 1, 'gssgsdgsdgsd', 'ggsdfgsdfgsdf', 'ggsdgsdgsdgsdf', 'U2FsdGVkX1/ZRtUjiMXJ76GMkhTSGfe6F9Sx3lI56jRf/YAtM/X+TLMYCkLBfWKO'),
+(7, 1, 'hdfhdfhdfh', 'hdfhdfhdfh', 'hdfhdfhdfh', 'U2FsdGVkX19SOQuDfB2Jz8BWxJMpsPfKWDlKyJusYq8='),
+(13, 1, 'gsgsga', 'gsdgsgsadf', 'gsdfgsdfghsdfhgdsfh', 'U2FsdGVkX1+1ltzd9a/a4l0jI0OLw6Tqi3YYiFZjFeE='),
+(14, 1, 'asifali', 'lkjhgsak', 'asifyaahoo', 'U2FsdGVkX19aL4bwjj2tTV59ib01h9Mtk9xiPeO6Awg='),
+(15, 1, 'jfdjfj', 'fjf', 'jfdgjfgj', 'U2FsdGVkX1/2QRHFxvS1lFMcNJp+lH0FALpYAH9aYmQ=');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `freqtab`
+--
+
+CREATE TABLE `freqtab` (
+  `symbol` varchar(7) NOT NULL,
+  `freq` int(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `freqtab`
+--
+
+INSERT INTO `freqtab` (`symbol`, `freq`) VALUES
+(' ', 34),
+('!', 17),
+('#', 16),
+('$', 11),
+('%', 11),
+('&', 100000000),
+('(', 12),
+(')', 12),
+('*', 11),
+('+', 10),
+(',', 10),
+('-', 10),
+('.', 10),
+('/', 10),
+('<', 100000000),
+('=', 10),
+('>', 100000000),
+('?', 10),
+('@', 10),
+('^', 10),
+('_', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `freqtabcap`
+--
+
+CREATE TABLE `freqtabcap` (
+  `symbol` char(2) NOT NULL,
+  `freq` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `freqtabcap`
+--
+
+INSERT INTO `freqtabcap` (`symbol`, `freq`) VALUES
+('A', 4),
+('B', 3),
+('C', 3),
+('D', 3),
+('E', 3),
+('F', 3),
+('G', 3),
+('H', 6),
+('I', 3),
+('J', 4),
+('K', 4),
+('L', 3),
+('M', 7),
+('N', 5),
+('O', 4),
+('P', 6),
+('Q', 6),
+('R', 3),
+('S', 4),
+('T', 3),
+('U', 3),
+('V', 3),
+('W', 7),
+('X', 3),
+('Y', 2),
+('Z', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `freqtabnum`
+--
+
+CREATE TABLE `freqtabnum` (
+  `symbol` char(2) NOT NULL,
+  `freq` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `freqtabnum`
+--
+
+INSERT INTO `freqtabnum` (`symbol`, `freq`) VALUES
+('0', 13),
+('1', 13),
+('2', 13),
+('3', 13),
+('4', 13),
+('5', 13),
+('6', 13),
+('7', 13),
+('8', 12),
+('9', 13);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `freqtabsmall`
+--
+
+CREATE TABLE `freqtabsmall` (
+  `symbol` varchar(2) NOT NULL,
+  `freq` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `freqtabsmall`
+--
+
+INSERT INTO `freqtabsmall` (`symbol`, `freq`) VALUES
+('a', 59),
+('b', 12),
+('c', 12),
+('d', 33),
+('e', 21),
+('f', 49),
+('g', 29),
+('h', 60),
+('i', 37),
+('j', 52),
+('k', 36),
+('l', 16),
+('m', 16),
+('n', 29),
+('o', 21),
+('p', 15),
+('q', 11),
+('r', 25),
+('s', 51),
+('t', 20),
+('u', 20),
+('v', 11),
+('w', 11),
+('x', 12),
+('y', 14),
+('z', 12);
 
 -- --------------------------------------------------------
 
@@ -36,53 +216,13 @@ CREATE TABLE `hash_warehouse` (
 --
 
 INSERT INTO `hash_warehouse` (`uid`, `hashval`) VALUES
-(103, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(105, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(109, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(110, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(112, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(113, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(114, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(115, '4ea03ea3a87b1a75b115f331e46e70ab'),
-(116, 'f5d17022c96af46c0a1dc49a58bbe654'),
-(117, '3c8287630057dbbd54a13e8e910b18b6'),
-(118, '04eb8c4c91e8f904af0eab6b41a1ca4066e9ce72d886f2748c6b83ca1b7bf804'),
-(119, '2800e59e22cb3a8a34b110f1cce9e267'),
-(120, '4e3723a2139306a75d5350f84377de01'),
-(121, 'f489051ad2e1009a3f53b266e237f827'),
-(122, '3060198653641ea21f5f53901586ff72'),
-(123, 'b67d7648ad9ef7689ec653b6b0899187'),
-(124, '57b1a9d95469a5b32d92eb955ea2b49d'),
-(125, 'f0963f67125117b97d07627ad71d4c9c'),
-(126, 'ecab1d150db2bff7b7cc9aee11f9d973'),
-(127, '8d7181ce0be4df346f0b37d306c3030d'),
-(128, 'c4737e09b78973b78462a805c68e06d5'),
-(129, '7f336863d95f1668abeb9175bb87c95b'),
-(130, 'b5d897fc3db037b3e10cf7231997a41c'),
-(131, '35f4266f12a9d2d3d5ba906dd2d4ab9e'),
-(132, 'd3e65fc0bb54b43ce211630067eb7860'),
-(133, '8d78d600d31555f6de5a005d24d98c8c'),
-(134, 'a3cbeaace6393833394bbd8f14e87d33'),
-(135, '7b32d78f0ebfca5ee44e6df07d2808e6'),
-(136, '342f845caab69273e96677c99cd0b4eb'),
-(137, 'eea7fdd990ee8ab61a9e16caab66a3af'),
-(138, '64cb744d4957ea5936fe5c249dcfcc3b'),
-(139, 'c9a6ea6ec28992bf84b2692e17a0c969'),
-(140, 'dd21c7e78adb8f1ab8c0ad81629220be'),
-(141, 'de98e04f62c1a97463a0ddb7676bba65'),
-(142, 'd8239da883ed84685f2884a8a7d7c554'),
-(143, 'c7be0745bc89ad92288ff4f39c5065eb'),
-(144, 'a4ee34171cca823a45eabf2e8774a303'),
-(145, 'ed4746c2ba29a842819ea48ead7df5ec'),
-(146, '8bfc4330cdc5c187172516d03e5b200d'),
-(147, '23b82df217896d61ac655189a2e93dd2'),
-(148, '8c8def9af4869f64f19295a2a3d00d7d'),
-(149, '013aa5dc048c2ff1083a7573f0ce55d6'),
-(150, '42643effd427d1f43fbeecbd0fb99567'),
-(151, '8d48f6b4fdc26f99ec5859e8566f179d'),
-(152, '96571e249f51be24dee5921d5e737a6d'),
-(153, 'e2a33dd662594bc7267f0269b16c7f7d'),
-(154, '2d4fc33791879046059563f14015ed93');
+(1, '56bf8e7d91703acaeba7fd064dcd26ad'),
+(2, '5702d7d1b10e4d662ec5a036e27cd04a'),
+(4, '772f038f72ac79221de745c32b302263'),
+(5, 'bb175bcb333c3d59d9e00a35c7968c20'),
+(6, '19150034e6134b4941743ff5a6648045'),
+(7, '108b6b23ab0f982d683e242ca0a08c1a'),
+(8, 'b3d5d2583cb97a41b35a80924b64821d');
 
 -- --------------------------------------------------------
 
@@ -94,61 +234,81 @@ CREATE TABLE `name_time_warehouse` (
   `uid` bigint(20) NOT NULL,
   `uname` varchar(50) COLLATE utf8_bin NOT NULL,
   `email` varchar(50) COLLATE utf8_bin NOT NULL,
-  `logintime` varchar(50) COLLATE utf8_bin NOT NULL
+  `logintime` varchar(50) COLLATE utf8_bin NOT NULL,
+  `mobile` bigint(120) NOT NULL,
+  `pid` bigint(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `name_time_warehouse`
 --
 
-INSERT INTO `name_time_warehouse` (`uid`, `uname`, `email`, `logintime`) VALUES
-(103, 'azinmakaranth', 'a@a.cq', '201802231200'),
-(105, 'azinmakaranth', 'a@a.cqmm', '201802231203'),
-(109, 'azinmakaranth', 'fgf@uuu.com', '201802231215'),
-(110, 'jkjka', 'lklada@afa.ciii', '201802231216'),
-(112, 'hhhh', 'gggg@ggg.coo', '201802231224'),
-(113, 'hhhh', 'iiii@ggg.co', '201802231224'),
-(114, 'hhh', 'ffff@sss.ss', '201802231231'),
-(115, 'azin', 'azin@a.ccc', '201802231243'),
-(116, 'azin101', 'azin@a.cccom', '201802231430'),
-(117, 'gitto', 'ggg@ggg.g', '201802231443'),
-(118, 'mariya', 'mmmm@mmm.mm', '201802230924'),
-(119, 'qwer', 'jjjjj@jjjj.j', '201802231510'),
-(120, 'nodemon', 'nnnnnnndkajdfa@lkjfa.cldfa', '201802252016'),
-(121, 'azinmakaranth007', 'azin.makaranth@gggmmaail.com', '201803091839'),
-(122, 'heyyu', 'heyyu@gmail.com', '201803091847'),
-(123, 'qw', 'hasthala@hhh.com', '201803092135'),
-(124, 'angel', 'angel@g.com', '201803092137'),
-(125, 'kiwi', 'kiwi@gmail.com', '201803101658'),
-(126, 'kitty', 'kit@hhh.co', '201803101758'),
-(127, 'java', 'java@khjfa.c', '201803101807'),
-(128, 'dad', 'kjda@dfa.cc', '201803101813'),
-(129, 'a', 'hsfhf@frafs.fgn', '201803101818'),
-(130, 'o', 'dfa@fda.df', '201803101828'),
-(131, 'kittu', 'da@fasf.faf', '201803101840'),
-(132, 'hiel', 'kljfskj@kjfa.cda', '201803101843'),
-(133, 'fsfs', 'fsfa@gdsgd.bn', '201803101844'),
-(134, 'kjfa', 'dafafafa@fafa.cyh', '201803101845'),
-(135, 'jjjdah', 'jhdajhda@jhda.com', '201803101847'),
-(136, 'jkiihjkhj', '8767@hafa.com', '201803101848'),
-(137, 'average', 'aav@gg.com', '201803101849'),
-(138, 'ioe', 'kj@kjda.c', '201803101850'),
-(139, 'hghg', 'jhjjh@hgf', '201803101851'),
-(140, 'asni', 'dad@dada.csa', '201803101853'),
-(141, 'gdgds', 'gdgds@dada.g', '201803101917'),
-(142, 'fsas', 'dfsfs@fsasf.jf', '201803101917'),
-(143, 'heuh', 'jhda@jhda.cc', '201803102013'),
-(144, 'jijda', 'dada@fadaa.dfa', '201803102015'),
-(145, 'hghg', 'ujhiuh@jhda.dada', '201803102015'),
-(146, 'YYYjdajh', 'jhfsajh@jkhfsajh.vo', '201803102016'),
-(147, 'fsfs', 'daas@da.c', '201803102017'),
-(148, 'fadasa', 'dfada@fadfa.ghf', '201803102017'),
-(149, 'das', 'sasa@sasa.cc', '201803102019'),
-(150, 'dada', 'das@gsgdf.gfh', '201803102039'),
-(151, 'fa', 'fsa@ada.gfh', '201803102040'),
-(152, 'dadakk', 'jhda@dada.cadad', '201803102042'),
-(153, 'test', 'test@test.test', '201803102143'),
-(154, 'newuser', 'newuser@gmail.com', '201803102156');
+INSERT INTO `name_time_warehouse` (`uid`, `uname`, `email`, `logintime`, `mobile`, `pid`) VALUES
+(1, 'azinmakaranth', 'azin.makaranth@gmail.com', '201804061930', 8281860141, 1),
+(2, 'alberteinstein', 'alberteinstein@gmail.com', '201804061933', 7412356987, 1),
+(3, 'ajenthaellora', 'ajenthaellora@gmail.com', '201804061938', 7488547747, 2),
+(4, 'zamantha', 'zam123@gmail.com', '201804061946', 7774455841, 3),
+(5, 'atomicentry', 'atomicentry@atomic.com', '201804061949', 4523654125, 4),
+(6, 'zufauio', 'zufauio@mav.co', '201804061951', 7485632014, 5),
+(7, 'xuiiioooo', 'xuiiiioooo@jhfa.com', '201804061952', 7445587774, 6),
+(8, 'hjiuuaad', 'kjfak@hjfa.com', '201804061954', 8989288818, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pass`
+--
+
+CREATE TABLE `pass` (
+  `id` int(200) NOT NULL,
+  `pass` varchar(500) NOT NULL,
+  `pid` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pass`
+--
+
+INSERT INTO `pass` (`id`, `pass`, `pid`) VALUES
+(1, 'azinmakaranth', 1),
+(2, 'I_q+bert62', 1),
+(3, 'Rc._-87uhuhjnjnjnK', 3),
+(4, 'Tq=/01uikkmnio', 4),
+(5, 'Uv@?93jkhf', 5),
+(6, 'Vb^%52k', 6),
+(7, 'Xc$*76jhfkkkk', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `policytab`
+--
+
+CREATE TABLE `policytab` (
+  `id` int(200) NOT NULL,
+  `inchar1` varchar(2) NOT NULL,
+  `inchar2` varchar(2) NOT NULL,
+  `insym1` varchar(2) NOT NULL,
+  `insym2` varchar(2) NOT NULL,
+  `innum1` varchar(2) NOT NULL,
+  `innum2` varchar(2) NOT NULL,
+  `avchar1` varchar(2) NOT NULL,
+  `avchar2` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `policytab`
+--
+
+INSERT INTO `policytab` (`id`, `inchar1`, `inchar2`, `insym1`, `insym2`, `innum1`, `innum2`, `avchar1`, `avchar2`) VALUES
+(1, 'I', 'q', '+', '_', '6', '2', 'M', 'a'),
+(2, 'K', 'v', ',', '*', '8', '7', 'M', 'a'),
+(3, 'R', 'c', '.', '-', '8', '7', 'M', 'a'),
+(4, 'T', 'q', '=', '/', '0', '1', 'M', 'a'),
+(5, 'U', 'v', '@', '?', '9', '3', 'M', 'a'),
+(6, 'V', 'b', '^', '%', '5', '2', 'M', 'a'),
+(7, 'X', 'c', '$', '*', '7', '6', 'M', 'a'),
+(8, 'Y', 'q', ',', '+', '8', '9', 'M', 'h');
 
 -- --------------------------------------------------------
 
@@ -3533,6 +3693,14 @@ INSERT INTO `test` (`test`, `no`) VALUES
 --
 
 --
+-- Indexes for table `accnt`
+--
+ALTER TABLE `accnt`
+  ADD PRIMARY KEY (`aid`),
+  ADD KEY `uid` (`uid`),
+  ADD KEY `uid_2` (`uid`);
+
+--
 -- Indexes for table `hash_warehouse`
 --
 ALTER TABLE `hash_warehouse`
@@ -3543,7 +3711,23 @@ ALTER TABLE `hash_warehouse`
 --
 ALTER TABLE `name_time_warehouse`
   ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `uname` (`uname`),
+  ADD UNIQUE KEY `mobile` (`mobile`),
+  ADD KEY `uname_2` (`uname`);
+
+--
+-- Indexes for table `pass`
+--
+ALTER TABLE `pass`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `policytab`
+--
+ALTER TABLE `policytab`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `seeds_warehouse`
@@ -3570,10 +3754,25 @@ ALTER TABLE `test`
 --
 
 --
+-- AUTO_INCREMENT for table `accnt`
+--
+ALTER TABLE `accnt`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
 -- AUTO_INCREMENT for table `name_time_warehouse`
 --
 ALTER TABLE `name_time_warehouse`
-  MODIFY `uid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `uid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `pass`
+--
+ALTER TABLE `pass`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `policytab`
+--
+ALTER TABLE `policytab`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `seeds_warehouse`
 --
@@ -3593,6 +3792,12 @@ ALTER TABLE `test`
 --
 ALTER TABLE `hash_warehouse`
   ADD CONSTRAINT `hash_warehouse_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `name_time_warehouse` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pass`
+--
+ALTER TABLE `pass`
+  ADD CONSTRAINT `fkey` FOREIGN KEY (`pid`) REFERENCES `policytab` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
