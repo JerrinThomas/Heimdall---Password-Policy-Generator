@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>Dynamic Salt Test</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body>
+    
+<form action="/postsignup" method="post" id = "myForm">
+    <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+                <div class="group">
+					<label for="user" class="label">Username</label>
+                    
+                   
+					<input id="user" type="text" name="uname" class="input" required onchange="check_uname()">
+                    <input type="hidden" name="pid" value="<%=pid%>">
+                    <span id = "error_uname" class="policy" style="color:#15f713;"></span><br>
+                    
+				</div>
+
+                <div class="group">
+					<label for="user" class="label">Email</label>
+                    
+                    
+					<input id="email" type="email" name="email" class="input" required onchange="check_email()">
+                    <span id = "error_email" class="policy" style="color:#15f713;"></span><br>
+                    
+				</div>
+                <div class="group">
+					<label for="user" class="label">Mobile</label>
+                    
+                    
+					<input id="mobile" type="number" name="mobile" class="input" required onchange="check_mob()">
+                    <span id = "error_mob" class="policy" style="color:#15f713;"></span><br>
+                    
+				</div>
+                <div class="group">
+					<label for="user" class="label">Policy</label>
+                    
+                    <span class="policy" style="color:#2ecc71">Include Characters : '<%=inchar.e1%>' , '<%=inchar.e2%>'</span><br>
+                    <span class="policy" style="color:#2ecc71">Include Symbols : '<%=insym.e1%>' , '<%=insym.e2%>'</span><br>
+                    <span class="policy" style="color:#2ecc71">Include Numbers : '<%=innum.e1%>' , '<%=innum.e2%>'</span><br>
+                    <span class="policy" style="color:#2ecc71">Avoid Characters  : '<%=avchar.e1%>' , '<%=avchar.e2%>'</span><br>
+        
+				</div>
+        
+        <div class="group">
+					<label for="pass" class="label">Password</label>
+                    
+                    
+					<input id="pass" type="password" name="pwd" class="input" data-type="password" onkeyup = "check()" required><br>
+                        <span id = "comment1" class="policy"></span><br>
+            
+                    
+				</div>
+        
+          <div class="group">
+                    
+                    
+                        <label for="pass" class="label">Most Favourite Color: </label>
+					<select name="color1" required>
+                        <!--option selected> Select Color1 </option-->
+                        <option value="1" style="background:red">Red</option>
+                        <option value="2" style="background:green">Green</option>
+                        <option value="3" style="background:yellow">Yellow</option>
+                        <option value="4" style="background:blue">Blue</option>
+                        <option value="5" style="background:orange">Orange</option>
+                        <option value="6" style="background:purple">Purple</option>
+                        <option value="7" style="background:cyan">Cyan</option>
+
+                        <option value="8" style="background:lime">Lime</option>
+                        <option value="9" style="background:pink">Pink</option>
+                        <option value="10" style="background:teal">Teal</option>
+
+                        <option value="11" style="background:brown">Brown</option>
+                        <option value="12" style="background:beige">Beige</option>
+                        <option value="13" style="background:maroon">Maroon</option>
+                        <option value="14" style="background:mint">Mint</option>
+                        <option value="15" style="background:olive">Olive</option>
+                        <option value="16" style="background:coral">Coral</option>
+                        <option value="17" style="background:navy">Blue</option>
+                        <option value="18" style="background:grey">Grey</option>
+                        <option value="19" style="background:white">White</option>
+                        <option value="20" style="background:black">Black</option>
+                    </select>
+                    
+                    
+				</div>
+                
+                <div class="group">
+                    
+                    
+                        <label for="pass" class="label">Next Most Favourite Color: </label>
+					<select name="color2" required>
+                        <!--option selected> Select Color2 </option---->
+                        <option value="1" style="background:red">Red</option>
+                        <option value="2" style="background:green">Green</option>
+                        <option value="3" style="background:yellow">Yellow</option>
+                        <option value="4" style="background:blue">Blue</option>
+                        <option value="5" style="background:orange">Orange</option>
+                        <option value="6" style="background:purple">Purple</option>
+                        <option value="7" style="background:cyan">Cyan</option>
+
+                        <option value="8" style="background:lime">Lime</option>
+                        <option value="9" style="background:pink">Pink</option>
+                        <option value="10" style="background:teal">Teal</option>
+
+                        <option value="11" style="background:brown">Brown</option>
+                        <option value="12" style="background:beige">Beige</option>
+                        <option value="13" style="background:maroon">Maroon</option>
+                        <option value="14" style="background:mint">Mint</option>
+                        <option value="15" style="background:olive">Olive</option>
+                        <option value="16" style="background:coral">Coral</option>
+                        <option value="17" style="background:navy">Blue</option>
+                        <option value="18" style="background:grey">Grey</option>
+                        <option value="19" style="background:white">White</option>
+                        <option value="20" style="background:black">Black</option>
+                    </select>
+                    
+                    
+				</div>
+        
+        
+                <div class="group">
+                    
+                    
+					<input type="button" class="button" value="Sign Up" onclick="mySubmit()" id = "sumbitForm">
+                    
+                    
+				</div>
+                
+</form>
+    <script>
+            function check(){
+                var enter1 = false;
+                var text = "Include ";
+                var pwd = document.getElementById("pass").value;
+                if(!pwd.includes('<%=inchar.e1%>'))
+                 { 
+                     enter1 = true; 
+                     text += "'<%=inchar.e1%>' "; 
+                }
+                if(!pwd.includes('<%=inchar.e2%>'))
+                 {
+                      enter1 = true; 
+                      text += "'<%=inchar.e2%>' "; 
+                }
+                if(!pwd.includes('<%=insym.e1%>'))
+                 { 
+                     enter1 = true;  
+                     text += "'<%=insym.e1%> "; 
+                }
+                if(!pwd.includes('<%=insym.e2%>'))
+                 { 
+                     enter1 = true;  
+                     text += "'<%=insym.e2%>' "; 
+                }
+                if(!pwd.includes('<%=innum.e1%>'))
+                 {
+                    enter1 = true;  
+                    text += "'<%=innum.e1%>' "; 
+                }
+                if(!pwd.includes('<%=innum.e2%>'))
+                 { 
+                     enter1 = true;  
+                     text += "'<%=innum.e2%>' "; 
+                }
+                var enter2 = false;
+                var comment2 = "Avoid ";
+                if(pwd.includes('<%=avchar.e1%>'))
+                 {
+                    enter2 = true;  
+                    comment2 += "'<%=avchar.e1%>' "; 
+                    console.log("Hereee",comment2);
+                }
+                if(pwd.includes('<%=avchar.e2%>'))
+                 { 
+                     enter2 = true;  
+                     comment2 += "'<%=avchar.e2%>' "; 
+                }
+                if(!enter1) text = "";
+                if(!enter2) comment2 = "";
+                if(enter2 || enter1)
+                    { 
+                        document.getElementById("comment1").innerHTML = text+comment2+".";
+                        document.getElementById("comment1").style.color = "red" 
+                    }
+                else
+                document.getElementById("comment1").innerHTML = ""; 
+            }
+            function check_uname() {
+               var xhttp = new XMLHttpRequest();
+               var uname = document.getElementById("user").value;
+               var opt = 1;
+               xhttp.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                   document.getElementById("error_uname").innerHTML= this.responseText;
+                   if(this.responseText == 'Username Already Exists')
+                      document.getElementById("error_uname").style.color = "red"
+                    else
+                      document.getElementById("error_uname").style.color = "#15f713"
+                }
+              };
+              xhttp.open("GET", "check?uname="+uname+"&opt="+opt, true);
+              xhttp.send();
+            }
+            function check_email() {
+               var xhttp = new XMLHttpRequest();
+               var email = document.getElementById("email").value;
+               var opt = 2;
+               xhttp.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                   document.getElementById("error_email").innerHTML= this.responseText;
+                   if(this.responseText == 'Email Already Exists') 
+                   {
+                       document.getElementById("error_email").style.color = "red"
+                   }
+                   else
+                      document.getElementById("error_email").style.color = "#15f713"
+                }
+              };
+              xhttp.open("GET", "check?email="+email+"&opt="+opt, true);
+              xhttp.send();
+            }
+            function check_mob() {
+               var xhttp = new XMLHttpRequest();
+               var email = document.getElementById("mobile").value;
+               var opt = 3;
+               xhttp.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                   document.getElementById("error_mob").innerHTML= this.responseText;
+                   if(this.responseText == 'Mobile Number Already Exists')
+                      document.getElementById("error_mob").style.color = "red"
+                    else
+                      document.getElementById("error_mob").style.color = "#15f713"
+                }
+              };
+              xhttp.open("GET", "check?mobile="+email+"&opt="+opt, true);
+              xhttp.send();
+            }
+            function mySubmit(){
+                 var go = true;
+                 if(document.getElementById("error_uname").innerHTML != 'Valid Username')
+                    { 
+                      alert("Enter a Valid Username") 
+                      go = false
+                    } 
+                 if(document.getElementById("error_email").innerHTML != 'Valid Email')
+                    { 
+                      alert("Enter a Valid Email"); 
+                      go = false  
+                    }      
+                 if (document.getElementById("error_mob").innerHTML != 'Valid Mobile Number' )
+                    { 
+                        alert("Enter a Valid Mobile Number"); 
+                        go = false
+                    }
+                 
+                 if(go)
+                   document.getElementById('myForm').submit();
+                 //console.log(document.getElementById("error_email").innerHTML,document.getElementById("error_uname").innerHTML)
+            }
+        </script>
+</body>
+</html>
+      

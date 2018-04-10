@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heimdall</title>
+    <link rel="stylesheet" href="css/style4pass_man.css">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/jq.js"></script>
+    <script type="text/javascript" src="js/crpt_js/pidcrypt_util.js"></script>  
+    <script type="text/javascript" src="js/crpt_js/pidcrypt.js"></script>  
+    <script type="text/javascript" src="js/crpt_js/md5.js"></script>  
+    <script type="text/javascript" src="js/crpt_js/aes_core.js"></script>  
+    <script type="text/javascript" src="js/crpt_js/aes_cbc.js"></script>  
+    <script type="text/javascript" src="js/crpt_js/aes_ctr.js"></script>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <header class="page-topbar" id="header">
+        <div class="navbar-fixed">
+            <nav class="navbar-color gradient-45deg-purple-deep-orange gradient-shadow">
+                <div class="nav-wrapper">
+                    <div class="header-search-wrapper hide-on-med-and-down sideNav-lock">
+                        <i class="material-icons">search</i>
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+                    </div>
+                    <ul class="right hide-on-med-and-down" style="margin-right: 60px;">
+                        <li>
+                            <a href="#" class="waves-effect waves-block waves-light profile-button" onclick="drop();">
+                                <span class="avatar-status avatar-online">
+                                    <img src="imgs/index.png" alt="avatar">
+
+                                </span>
+                            </a>
+                            <ul id="profile-dropdown" class="dropdown-content" style="white-space: nowrap; opacity: 1; left: 1156.6px; position: absolute; top: 64px; display: none;">
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">face</i> Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">settings</i> Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">live_help</i> Help</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" class="grey-text text-darken-1">
+                                        <i class="material-icons">lock_outline</i> Lock</a>
+                                </li>
+                                <li>
+                                    <a href='../logout' class="grey-text text-darken-1">
+                                        <i class="material-icons">keyboard_tab</i> Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="slide-out" class="side-nav fixed">
+            <li class="logo clr" style="height:280px; margin-bottom: 10px;">
+                <a href="#" id="logo-container" class="brand-logo">
+                    <img src="imgs/white.png" style="width: 220px; margin-top: 30px;">
+                </a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr slct" id="s1" onclick="chng(1);">
+                    <i class="material-icons lg lg_white" id="l1">web</i>Sites</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s2" onclick="chng(2);">
+                    <i class="material-icons lg" id="l2">note</i>Secure Notes</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s3" onclick="chng(3);">
+                    <i class="material-icons lg" id="l3">chrome_reader_mode</i>Form Fills</a>
+            </li>
+            <li class="pd">
+                <a href="#!" class="a_clr" id="s4" onclick="chng(4);">
+                    <i class="material-icons lg" id="l4">history</i>History</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse">
+            <i class="material-icons editz">menu</i>
+        </a>
+    </header>
+    <div class="row">
+        <div class="col l3"></div>
+
+        <div class="col s10 l9" id="tabContainer">
+             <% if((row === undefined) == false) { %>
+             <% for(var i=0,j=1;i<row.length;i++,j++) { %>
+               <div class="col s12 l3 marg" id="tab<%= j%>">
+                <div class="card m_size">
+                    <div class="card-content">
+                        <h4 class="ele"><%= row[i].sitename%></h4>
+                    </div>
+                    <div class="card-content clr1 wht" id="edit<%= j%>">
+                        <h6 class="fnt">username:<%= row[i].username%></h6>
+                        <h6 class="fnt">password: *******</h6>
+                    </div>
+                    <div class="card-action">
+                        <button style="color: #ab378f; border:none; background: white;" onclick="visittab('tab<%= j%>','<%= row[i].aid%>')">Visit</button>
+                        <button onclick="edittab('edit<%= j%>','<%= row[i].aid%>')"  style="float: right;margin-right: 0px;color: #fc6c43;  border:none; background: white;" class="modal-trigger">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button onclick="deletetab('tab<%= j%>','<%= row[i].aid%>')" style="float: right;margin-right: 20px;color: red;  border:none; background: white;">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                 </div>
+                </div>
+                <% } %>
+             <% } %>   
+            <div class="modal m_edit" id="modal1">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="e_name" type="text" class="validate">
+                            <label for="name">UserName</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="e_pass" type="password" class="validate">
+                            <label for="password" id="pd_1">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="mas_pass" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light ml" id="edit_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+            <div class="fixed-action-btn">
+                <a href="#modal2" class="btn-floating btn-large waves-effect waves-light modal-trigger dblu" id = "modal2fire">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+            <div class="modal m_edit" id="modal2">
+                <div class="modal-content">
+                        <input id="aid" type="hidden">
+                        <div class="input-field">
+                            <input id="sitename" type="text" class="validate">
+                            <label for="url">Site Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="furl" type="text" class="validate">
+                            <label for="url">SiteUrl</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="fname" type="text" class="validate">
+                            <label for="name">UserName / Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="fpassword" type="password" class="validate">
+                            <label for="password" id="pd_1">Password</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light ml" id="submit_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+            <div class="modal m_edit" id="passPrompt">
+                <div class="modal-content">
+                        <div class="input-field">
+                            <input id="passPro" type="password" class="validate">
+                            <label for="url">Confirm MasterPassword(This is used for encrypting your data)</label>
+                        </div>
+                        <button class="btn waves-effect waves-light ml" id="go_but">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script>
+                        var key;
+                        $(document).ready(function(){
+                                
+                                $("#go_but").click(function(){
+                                    var aes = new pidCrypt.AES.CBC();
+                                    var ptext = $("#fpassword").val(); 
+                                    var key = $("#passPro").val();
+                                    var ciphertext = aes.encryptText(ptext, key, {nBits: 128}); 
+                                    $.post( "postaccnt",{
+                                        sitename : $("#sitename").val(),
+                                        furl : $("#furl").val(),
+                                        fname : $("#fname").val(),
+                                        fpassword : ciphertext
+                                    }, 
+                                    function( data ) {
+                                        $("#passPrompt").modal('close');
+                                        var num = $('div.col s12 l3 marg').length;
+                                        num++;
+                                        $("#tabContainer").append('<div id="tab'+ num +'" class="col s12 l3 marg"><div class="card m_size"><div class="card-content"><h4 class="ele">Facebook</h4></div><div class="card-content clr1 wht"><h6 class="fnt">username:shayi</h6><h6 class="fnt">password:123456</h6></div><div class="card-action"><a href="#" style="color: #ab378f;">Visit</a><a href="#modal1" style="float: right;margin-right: 0px;color: #fc6c43;" class="modal-trigger"><i class="material-icons">edit</i></a><a href="#" style="float: right;margin-right: 20px;color: red;"><i class="material-icons">delete</i></a></div></div></div>');
+                                    });
+                                }); 
+                                $("#submit_but").click(function(){
+                                    if($("#sitename").val() != ''  && $("#furl").val() != '' && $("#fname").val() != '' && $("#fpassword").val() != '') {
+                                        $("#modal2").modal('close');
+                                        $("#fpassword").val(""); 
+                                        $("#passPrompt").modal('open');
+                                    }
+                                    else
+                                    alert(" Missing Data");
+                                });
+
+                                $("#modal2fire").click(function(){
+                                        $("#sitename").val("")
+                                        $("#furl").val("")
+                                        $("#fname").val("")
+                                        $("#fpassword").val("")
+                                });
+                    });
+                    function visittab(tab,aid){
+                        console.log("fired Visit");
+                    }
+                    function edittab(tab,aid){
+                         $("#e_name").val("");
+                         $("#e_pass").val("");
+                         $("#modal1").modal('open');
+                         $("#edit_but").click(function(){
+                                    console.log("Firedddd");
+                                    var e_name = $("#e_name").val();
+                                    var e_pass = $("#e_pass").val();
+                                    var m_pass = $("#mas_pass").val();
+                                    var aes = new pidCrypt.AES.CBC();
+                                    var ciphertext = aes.encryptText(e_pass, m_pass, {nBits: 128});
+                                    console.log(ciphertext)
+                                    $("#"+tab).empty().append('<h6 class="fnt">username:'+e_name+'</h6><h6 class="fnt">password: *******</h6>');
+                                    $("#modal1").modal('close');
+                                    $.post( "editaccnt",{
+                                            username : e_name,
+                                            password : ciphertext,
+                                            aid : aid
+                                        }, 
+                                        function( data ) {
+                                          
+                                        });
+                                    });
+                    }
+                    function deletetab(tab,aid){
+                            $("#"+tab).remove();
+                            $.post( "deleteaccnt",{
+                                aid : aid
+                            }, 
+                            function( data ) {
+                              
+                            });
+                    }
+                   
+    </script>
+
+</body>
+
+</html>
