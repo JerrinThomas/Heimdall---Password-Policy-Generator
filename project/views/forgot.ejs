@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div id="bodycontents">  
+      Username Please :
+      <input id ="username" />
+      <button id="go">Search My Username</button>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/jq.js"></script>
+    <script>
+          $("#go").click(function(){
+              var value = $("#username").val()
+              $.post( "forgot",{
+                    username : value
+                }, 
+                function( data ) {
+                    $("#bodycontents").empty().append(data);
+                });
+            }); 
+          function otpgo(){
+              var otp = $("#otp").val()
+              $.post( "forgot_try",{
+                    otp: otp
+                }, 
+                function( data2 ) {
+                    $("#bodycontents").empty().append(data2);
+                });
+            }
+          
+    </script>
+</body>
+</html>

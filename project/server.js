@@ -7,6 +7,7 @@ const ejs = require('ejs');
 var session = require('express-session');
 const hg = require('./hashgen.js');
 let date = require('date-and-time');
+var request = require('request');
 
 const port = process.env.PORT || 8080;
 
@@ -251,4 +252,54 @@ app.post('/postaccnt',function(req,res){
      });
   });
 });
+app.get("/forgotmypassword",function(req,res){
+res.render("forgot");
+});
+
+app.post("/forgot",function(req,res){
+  var uname = req.body.username;
+  req.session.uname = uname;
+  db.con.query("select pid,mobile from name_time_warehouse where uname = '"+uname+"'", (e,r,f)=>{
+    if(e) throw e;
+      if(r.length != 0){
+        req.session.otp = Math.floor(10000 + Math.random() * 90000);
+        req.session.pid = r[0].pid;
+        request("http://localhost/sms_server/sendsms.php?uid=8281860141&pwd=M2826E&phone="+r[0].mobile+"&msg= Dear user your OTP is "+req.session.otp+"", function (error, response, body) {
+          console.log('error:', error); // Print the error if one occurred
+          console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        });
+        res.send('Enter The OTP sent to your Mobile : <input id="otp"><br><button onclick = "otpgo()">Check OTP</button>');
+      }
+      else 
+      {
+        res.send("Invalid Username");
+      }
+  });
+});
+
+app.post("/forgot_try",function(req,res){
+  var otp = req.body.otp;
+  if(req.session.otp === undefined){
+    res.send("Session Expired Retry...")
+  }
+  else {
+    if(otp == req.session.otp)
+    {
+      db.con.query("select * from  policytab where id = "+req.session.pid,(error,v,f)=>{   
+        res.render('forgot_try',{
+          insym : { e1 : v[0].insym1, e2 : v[0].insym2},
+          inchar : { e1 : v[0].inchar1, e2 : v[0].inchar2},
+          avchar : { e1 : v[0].avchar1, e2 : v[0].avchar2},
+          innum : { e1 : v[0].innum1, e2 : v[0].innum2},
+          pid : v[0].id
+        }); 
+       })
+    }
+    else
+    {
+      res.send("try again...");
+    }
+  }
+});
+
 app.listen( port ,()=> console.log( 'Server Is Up @localhost:'+port+'/' ));

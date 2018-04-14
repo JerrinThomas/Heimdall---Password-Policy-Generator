@@ -19,6 +19,7 @@
     "lcs": "github:erictrinh/lcs",
     "mysql": "^2.15.0",
     "promise": "^8.0.1",
-    "random-number": "0.0.9"
+    "random-number": "0.0.9",
+    "request": "^2.85.0"
   }
 }
