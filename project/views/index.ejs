@@ -26,7 +26,7 @@
                 <div class="nav-wrapper">
                     <div class="header-search-wrapper hide-on-med-and-down sideNav-lock">
                         <i class="material-icons">search</i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search" onkeyup = "search()" id="search">
                     </div>
                     <ul class="right hide-on-med-and-down" style="margin-right: 60px;">
                         <li>
@@ -303,6 +303,18 @@
                                 $("#tabContainer").empty().append(data);
                                 //$("#tabContainer").append(data);
                             });
+                    }
+                    function search(){
+                            var value = $("#search").val();
+                            console.log(value);
+                            $.post( "search",{
+                                val : value
+                            }, 
+                            function( data ) {
+                                $("#tabContainer").empty().append(data);
+                                //$("#tabContainer").append(data);
+                            }); 
+
                     }
     </script>
 

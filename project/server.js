@@ -185,6 +185,18 @@ app.post('/tabcontainer',function(req,res){
     });   
   });
 });
+app.post('/search',function(req,res){
+  var val = req.body.val;
+  if(req.session.uid === undefined)
+       res.status(404).send('Not found');
+  else
+  db.con.query("select * from accnt where uid = "+req.session.uid+" and sitename like '%"+val+"%' ",(e,u,f)=>{
+    res.render('tabcontainer',{
+      row : u
+    });   
+  });
+});
+
 app.post('/tabvisit',function(req,res){
   console.log("TabVisitEntered")
   var aid = req.body.aid;
