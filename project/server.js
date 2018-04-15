@@ -51,7 +51,7 @@ app.get('/check',function(req,res){
   }); 
  }
  else if(q.opt == 3){
-  db.con.query("select mobile from name_time_warehouse where uname = '"+q.mobile+"';", (error,u) => {
+  db.con.query("select uname from name_time_warehouse where mobile = '"+q.mobile+"';", (error,u) => {
     if (error) throw error;
     if( u.length != 0) 
        res.send('Mobile Number Already Exists');
