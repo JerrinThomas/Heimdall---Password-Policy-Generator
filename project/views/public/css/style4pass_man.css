@@ -197,6 +197,7 @@
   color: #8e24aa;
   font-size: 40px;
   font-weight: 600;
+  overflow: hidden;
 }
 
 .clr1 {
@@ -214,6 +215,15 @@
 
 .ml{
   margin-left: 25%;
+}
+
+.blank-font{
+  font-size: 150px;
+  margin-bottom: 0 !important;
+}
+
+.zero-marg{
+  margin-top: 0 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -238,5 +248,17 @@
   }
   .ml{
     margin-left: 20%;
+  }
+  .ele{
+    font-size: 25px;
+  }
+  .blank-font{
+    font-size: 30px;
+  }
+  .zero-marg{
+    font-size: 15px;
+  }
+  .egg{
+    font-size: 20px;
   }
 }

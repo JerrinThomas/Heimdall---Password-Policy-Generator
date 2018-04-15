@@ -37,23 +37,7 @@
                                 </span>
                             </a>
                             <ul id="profile-dropdown" class="dropdown-content" style="white-space: nowrap; opacity: 1; left: 1156.6px; position: absolute; top: 64px; display: none;">
-                                <li>
-                                    <a href="#" class="grey-text text-darken-1">
-                                        <i class="material-icons">face</i> Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="grey-text text-darken-1">
-                                        <i class="material-icons">settings</i> Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="grey-text text-darken-1">
-                                        <i class="material-icons">live_help</i> Help</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#" class="grey-text text-darken-1">
-                                        <i class="material-icons">lock_outline</i> Lock</a>
-                                </li>
+                                
                                 <li>
                                     <a href='../logout' class="grey-text text-darken-1">
                                         <i class="material-icons">keyboard_tab</i> Logout</a>
@@ -72,21 +56,10 @@
                 </a>
             </li>
             <li class="pd">
-                <a href="#!" class="a_clr slct" id="s1" onclick="loadtabcontainer();">
+                <a href="" class="a_clr slct" id="s1" onclick="loadtabcontainer();">
                     <i class="material-icons lg lg_white" id="l1">web</i>Sites</a>
             </li>
-            <li class="pd">
-                <a href="#!" class="a_clr" id="s2" onclick="chng(2);">
-                    <i class="material-icons lg" id="l2">note</i>Secure Notes</a>
-            </li>
-            <li class="pd">
-                <a href="#!" class="a_clr" id="s3" onclick="chng(3);">
-                    <i class="material-icons lg" id="l3">chrome_reader_mode</i>Form Fills</a>
-            </li>
-            <li class="pd">
-                <a href="#!" class="a_clr" id="s4" onclick="chng(4);">
-                    <i class="material-icons lg" id="l4">history</i>History</a>
-            </li>
+            
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse">
             <i class="material-icons editz">menu</i>
@@ -108,7 +81,7 @@
                         <h6 class="fnt">password: *******</h6>
                     </div>
                     <div class="card-action">
-                        <button style="color: #ab378f; border:none; background: white;" onclick="visittab('tab<%= j%>','<%= row[i].aid%>')">Visit</button>
+                        <button style="color: #ab378f; border:none; background: white;" onclick="visittab('tab<%= j%>','<%= row[i].aid%>')">View</button>
                         <button onclick="edittab('edit<%= j%>','<%= row[i].aid%>')"  style="float: right;margin-right: 0px;color: #fc6c43;  border:none; background: white;" class="modal-trigger">
                             <i class="material-icons">edit</i>
                         </button>
@@ -259,7 +232,7 @@
                                         var pdata = JSON.parse(data);
                                         console.log(pdata,key);
                                         var plaintext = aes.decryptText(pdata.password, key, {nBits: 128});
-                                        $("#tabContainer").empty().append(data+'<br>'+plaintext);
+                                        $("#tabContainer").empty().append('<div class="col s12 l12"><h1 class="center-align blank-font">'+pdata.sitename+'</h1><h4 class="center-align zero-marg"><a href="'+pdata.siteurl+'">'+pdata.siteurl+'</a></h4><h5 class="center-align egg">Username:'+pdata.username+'</h5><h5 class="center-align egg">Password:'+plaintext+'</h5><h5 class="center-align"><a href="" class="btn-floating btn-large waves-effect waves-light modal-trigger dblu" onclick="loadtabcontainer();"><i class="large material-icons">arrow_back</i></a></h5></div>');
                                         console.log(plaintext);
                                     });
                                 }); 
