@@ -213,6 +213,8 @@
                                     var sname = $("#sitename").val();
                                     var uname = $("#fname").val();
                                     var ciphertext = aes.encryptText(ptext, key, {nBits: 128}); 
+                                    //var plaintext = aes.decryptText(ciphertext, key, {nBits: 128});
+                                    //console.log("plainText : "+ptext+" key : "+key+" Sitename : "+sname+" Username : "+uname+" CipherText : "+ciphertext+" Decyrpt : "+plaintext);
                                     $.post( "postaccnt",{
                                         sitename : sname,
                                         furl : $("#furl").val(),
@@ -229,7 +231,7 @@
                                 $("#submit_but").click(function(){
                                     if($("#sitename").val() != ''  && $("#furl").val() != '' && $("#fname").val() != '' && $("#fpassword").val() != '') {
                                         $("#modal2").modal('close');
-                                        $("#fpassword").val(""); 
+                                        $("#passPro").val(""); 
                                         $("#passPrompt").modal('open');
                                     }
                                     else
@@ -255,9 +257,10 @@
                                     function( data ) {
                                         $("#passPrompt2").modal('close');
                                         var pdata = JSON.parse(data);
-                                        console.log(pdata);
+                                        console.log(pdata,key);
                                         var plaintext = aes.decryptText(pdata.password, key, {nBits: 128});
                                         $("#tabContainer").empty().append(data+'<br>'+plaintext);
+                                        console.log(plaintext);
                                     });
                                 }); 
                     }
