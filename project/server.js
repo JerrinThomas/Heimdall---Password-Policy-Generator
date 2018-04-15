@@ -268,7 +268,7 @@ app.post("/forgot",function(req,res){
           console.log('error:', error); // Print the error if one occurred
           console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         });
-        res.send('Enter The OTP sent to your Mobile : <input id="otp"><br><button onclick = "otpgo()">Check OTP</button>');
+        res.send('<div class="input-field kpmrg"><input id="otp" type="text" class="validate" style="color: white;"><label for="otp">Enter The OTP sent to your Mobile :</label></div><p class="center-align"><button class="btn waves-effect waves-light" onclick = "otpgo()">Check OTP</button></p>');
       }
       else 
       {

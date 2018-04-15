@@ -226,6 +226,15 @@
   margin-top: 0 !important;
 }
 
+.bodyusr{
+  margin-top: 15%;
+  height: 250px;
+}
+
+.kpmrg{
+  margin-top: 65px !important;
+}
+
 @media only screen and (max-width: 768px) {
   .editz {
     position: fixed;
@@ -260,5 +269,8 @@
   }
   .egg{
     font-size: 20px;
+  }
+  .kpmrg{
+    margin-top: 175px !important;
   }
 }
